@@ -1,0 +1,940 @@
+/* ============================================================
+   EXPLORE INDIA - Travel & Tourism Website Stylesheet
+   CSC-3025 Web Technology Project
+   Fergusson College (Autonomous), Pune
+   ============================================================ */
+
+/* ==================== CSS VARIABLES ==================== */
+/* Variables store reusable values like colors and spacing */
+:root {
+    --primary-color: #0d7377;       /* Teal - main brand color */
+    --primary-dark: #095456;        /* Darker teal for hover states */
+    --accent-color: #ff6b35;        /* Warm orange accent */
+    --accent-light: #ff8c5a;        /* Lighter orange for hover */
+    --text-dark: #1a1a2e;           /* Main text color */
+    --text-light: #666680;          /* Secondary text color */
+    --bg-light: #f8f9fa;            /* Light background sections */
+    --bg-white: #ffffff;            /* White background */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);       /* Card shadow */
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);  /* Hover shadow */
+    --border-radius: 12px;          /* Rounded corners */
+    --transition: all 0.3s ease;    /* Smooth transition effect */
+}
+
+/* ==================== RESET & BASE STYLES ==================== */
+/* Remove default browser spacing and set box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling when clicking navigation links */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+}
+
+/* Remove default list styling */
+ul {
+    list-style: none;
+}
+
+/* Style all links */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* Make images responsive by default */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+/* Container limits content width and adds horizontal padding */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section spacing used by all main sections */
+.section {
+    padding: 80px 0;
+}
+
+/* Section heading styles */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+/* Primary button - filled style */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-light);
+    border-color: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Outline button - border only style */
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Full width button for forms */
+.btn-full {
+    width: 100%;
+    text-align: center;
+}
+
+/* ==================== HEADER / NAVBAR ==================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+}
+
+/* Navbar uses Flexbox for horizontal layout */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+}
+
+/* Navigation links using Flexbox */
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 5px 0;
+    position: relative;
+}
+
+/* Underline effect on hover using CSS pseudo-element */
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+
+    /* Background image with cover sizing */
+    background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax-like effect using CSS only */
+}
+
+/* Dark overlay on hero image for readable text */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(13, 115, 119, 0.7),
+        rgba(26, 26, 46, 0.6)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    line-height: 1.8;
+    opacity: 0.95;
+}
+
+/* ==================== POPULAR DESTINATIONS ==================== */
+.destinations {
+    background-color: var(--bg-light);
+}
+
+/* CSS Grid for destination cards - 3 columns on desktop */
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.destination-card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+/* Card lift effect on hover */
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+/* Zoom effect on image hover */
+.destination-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.card-body {
+    padding: 22px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.card-text {
+    color: var(--text-light);
+    font-size: 0.92rem;
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+/* ==================== TRAVEL EXPERIENCES ==================== */
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.experience-card {
+    background-color: var(--bg-white);
+    border: 2px solid #eee;
+    border-radius: var(--border-radius);
+    padding: 35px 25px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.experience-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.experience-icon {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.experience-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.experience-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* ==================== WHY TRAVEL INDIA ==================== */
+.why-india {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+}
+
+.why-india .section-title,
+.why-india .section-subtitle {
+    color: white;
+}
+
+.why-india .section-subtitle {
+    opacity: 0.9;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.why-card {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: var(--border-radius);
+    padding: 30px 22px;
+    text-align: center;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.why-card:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.why-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 12px;
+}
+
+.why-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    font-size: 0.88rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* ==================== IMAGE GALLERY ==================== */
+.gallery {
+    background-color: var(--bg-light);
+}
+
+/* CSS Grid gallery with varied item sizes */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 15px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Large item spans 2 columns and 2 rows */
+.gallery-item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Wide item spans 2 columns */
+.gallery-item-wide {
+    grid-column: span 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Caption overlay on gallery images */
+.gallery-item figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* ==================== TRAVEL TIPS ==================== */
+.tips-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    margin-bottom: 15px;
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--accent-color);
+    transition: var(--transition);
+}
+
+.tip-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow);
+}
+
+.tip-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.tip-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.tip-item p {
+    color: var(--text-light);
+    font-size: 0.92rem;
+}
+
+/* ==================== ABOUT SECTION ==================== */
+.about-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.about-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-content p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.about-features {
+    margin-top: 20px;
+}
+
+.about-features li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--text-dark);
+}
+
+/* Custom bullet using CSS pseudo-element */
+.about-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* ==================== CONTACT SECTION ==================== */
+.contact {
+    background-color: var(--bg-light);
+}
+
+.contact-wrapper {
+    display: flex;
+    gap: 40px;
+}
+
+/* Contact form styling */
+.contact-form {
+    flex: 1.2;
+    background-color: var(--bg-white);
+    padding: 35px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+/* Input, select and textarea styling */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Contact info sidebar */
+.contact-info {
+    flex: 0.8;
+    padding: 20px;
+}
+
+.contact-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.contact-info > p {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.info-item strong {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.info-item p {
+    color: var(--text-light);
+    font-size: 0.92rem;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background-color: var(--text-dark);
+    color: #ccc;
+    padding-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding-bottom: 40px;
+}
+
+.footer-logo {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.footer-col h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+
+/* Social media icons (static, CSS-only circles) */
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+/* Tablet screens (max-width: 992px) */
+@media (max-width: 992px) {
+    .destination-grid,
+    .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item-large {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-wrapper {
+        flex-direction: column;
+    }
+
+    .contact-wrapper {
+        flex-direction: column;
+    }
+}
+
+/* Mobile screens (max-width: 768px) */
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Stack navbar links vertically on mobile */
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    .destination-grid,
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 180px;
+    }
+
+    .gallery-item-large,
+    .gallery-item-wide {
+        grid-column: span 1;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .hero {
+        background-attachment: scroll; /* Disable fixed bg on mobile for performance */
+    }
+}
+
+/* Small mobile screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 10px 22px;
+        font-size: 0.88rem;
+    }
+
+    .contact-form {
+        padding: 25px 20px;
+    }
+    /* Booking Corner */
+.booking-corner {
+    padding: 60px 8%;
+    text-align: center;
+    background: #f5f7fa;
+}
+
+.booking-corner h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.booking-corner > p {
+    color: #666;
+    margin-bottom: 35px;
+}
+
+.booking-options {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* Common Card Design */
+.booking-card {
+    width: 350px;
+    padding: 25px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark overlay */
+.booking-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
+}
+
+/* Keep content above overlay */
+.booking-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.booking-icon {
+    font-size: 45px;
+}
+
+.booking-card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.booking-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.booking-card input,
+.booking-card select {
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    outline: none;
+}
+
+.booking-card button {
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.booking-card button:hover {
+    background: #0056b3;
+}
+
+/* BUS BACKGROUND */
+.bus-card {
+    background-image: url("images/bus.jpg");
+}
+
+/* TRAIN BACKGROUND */
+.train-card {
+    background-image: url("images/train.jpg");
+}
+
+/* AEROPLANE BACKGROUND */
+.flight-card {
+    background-image: url("images/aeroplane.jpg");
+}
